@@ -117,10 +117,7 @@ tipos = {
             'nome': 'La Nacion',
             'link': 'https://www.lanacion.com.ar'
         },
-        {
-            'nome': 'La Nacion',
-            'link': 'https://www.lanacion.com.ar'
-        },
+
         {
             'nome': 'Agência Brasil',
             'link': 'https://agenciabrasil.ebc.com.br'
