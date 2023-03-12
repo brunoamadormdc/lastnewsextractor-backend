@@ -135,8 +135,16 @@ tipos = {
             'link': 'https://www.em.com.br'
         },
         {
+            'nome': 'Financial Times',
+            'link': 'https://www.ft.com'
+        },
+        {
             'nome': 'Jornal Nacional',
             'link': 'https://g1.globo.com/jornal-nacional'
+        },
+        {
+            'nome': 'Jornal da USP',
+            'link': 'https://jornal.usp.br/'
         },
         {
             'nome': 'Google Notícias',
@@ -173,6 +181,10 @@ tipos = {
         {
             'nome': 'News 24',
             'link': 'https://www.news24.com'
+        },
+        {
+            'nome': 'News Au',
+            'link': 'https://www.news.com.au/'
         },
 
 
@@ -512,6 +524,10 @@ tipos = {
         {
             'nome': 'Omelete',
             'link': 'https://www.omelete.com.br/noticias'
+        },
+        {
+            'nome': 'Online Séries',
+            'link': 'https://www.onlineseries.com.br'
         }
     ],
     "entretenimento":[
@@ -520,8 +536,8 @@ tipos = {
                 'link': 'http://entretenimento.r7.com/blogs/fabiola-reipert'
             },
             {
-                'nome': 'Coluna Leo Dias',
-                'link': 'https://www.metropoles.com/colunas/leo-dias'
+                'nome': 'Antena3',
+                'link': 'http://www.antena3.com'
             },
             {
                 'nome': 'Coluna Leo Dias',
@@ -566,6 +582,10 @@ tipos = {
             {
                 'nome': 'Ego Globo',
                 'link': 'http://ego.globo.com'
+            },
+            {
+                'nome': 'Glamurama',
+                'link': 'http://glamurama.uol.com.br'
             },
             {
                 'nome': 'Observatório dos Famosos',
@@ -614,6 +634,10 @@ tipos = {
             {
                 'nome': 'Pure Break',
                 'link': 'https://www.purebreak.com.br'
+            },
+            {
+                'nome': 'Rolling Stone',
+                'link': 'https://www.rollingstone.com/'
             }
 
         ],
@@ -665,7 +689,11 @@ tipos = {
             {
                 'nome': 'Tom Hardware',
                 'link': 'https://www.tomshardware.com'
-            }
+            },
+            {
+                'nome': 'Ei Nerd',
+                'link': 'https://www.einerd.com.br'
+            },
 
         ],
     "economia": [

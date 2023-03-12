@@ -14,8 +14,49 @@ class Scrapper:
         }
         self.statics = statics
 
-    def scrapp(self,search='',type=''):
+    def scrapp_unique(self,search='',pages={}):
+        
+        list = []
 
+        try:
+            url = requests.get(pages.get('link'), headers=self.headers)
+            soup = BeautifulSoup(url.content, "html.parser")
+            links = soup.find_all('a', href=True)
+            
+            for l in tqdm(links):
+                link = l.get('href')
+                text = l.text
+                slugtext = slugify(text)
+                slugsearch = slugify(search)
+
+                if search != '':
+
+                    if re.search(slugsearch, slugtext, re.IGNORECASE) and link != '#':
+
+                        if link[0] == '/':
+                            link = pages.get('link') + link
+
+                        list.append({
+                            'link': link,
+                            'texto': text,
+                            'portal': pages.get('nome')
+                        })
+
+                else:
+
+                    list.append({
+                        'link': link,
+                        'texto': text,
+                        'portal': pages.get('nome')
+                    })
+        
+        except:
+            pass
+
+        return list
+        
+
+    def scrapp(self,search='',type=''):
 
             list = []
             list_scrapp = self.statics.tipos[type]

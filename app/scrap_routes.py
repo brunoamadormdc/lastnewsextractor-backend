@@ -14,13 +14,25 @@ def scraproutes():
 
         data = request.get_json()
 
-
         list = scrapper.scrapp(search=data['busca'],type=data['tipo'])
 
         return jsonify({
             'links':list,
             'count':len(list)
         }),200
+
+@scrap_routes.route('/scrap-unique',methods=['POST'])
+def scrap_unique():
+
+        data = request.get_json()
+
+        list = scrapper.scrapp_unique(search=data['busca'],pages=data['page'])
+
+        return jsonify({
+            'links':list,
+            'count':len(list)
+        }),200
+
 
 @scrap_routes.route('/page',methods=['GET','POST'])
 def scrapPages():
