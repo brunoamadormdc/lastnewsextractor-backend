@@ -8,7 +8,6 @@ scrap_routes = Blueprint('scrap_routes',__name__)
 fuso_horario = pytz.timezone('America/Sao_Paulo')
 
 
-
 @scrap_routes.route('/getlink',methods=['POST'])
 def scraproutes():
 
@@ -46,6 +45,28 @@ def scrapPages():
         'links':list,
         'count':len(list)
     }),200
+
+@scrap_routes.route('/get_resume', methods=['POST'])
+def scrap_resume():
+    
+    data = request.get_json()
+    youtube = False
+    prompt = data['prompt']
+    page = data['url']
+
+    if page.find('youtube.com') != -1:
+        youtube = True
+
+
+    if youtube:
+        resume = scrapper.scrap_get_resume_youtube(url=page,prompt=prompt)
+    else:
+        resume = scrapper.scrap_get_resume(url=page,prompt=prompt)
+    
+    return jsonify({
+        'resume':resume
+    }),200
+
 
 
 

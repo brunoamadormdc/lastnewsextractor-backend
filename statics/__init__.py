@@ -37,18 +37,6 @@ tipos = {
             'link': 'https://www.msn.com'
         },
         {
-            'nome': 'MSN',
-            'link': 'https://www.msn.com'
-        },
-        {
-            'nome': 'MSN',
-            'link': 'https://www.msn.com'
-        },
-        {
-            'nome': 'New York Times',
-            'link': 'https://www.nytimes.com'
-        },
-        {
             'nome': 'New York Times',
             'link': 'https://www.nytimes.com'
         },
@@ -159,16 +147,8 @@ tipos = {
             'link': 'https://www.scmp.com'
         },
         {
-            'nome': 'South China Morning Post',
-            'link': 'https://www.scmp.com'
-        },
-        {
             'nome': 'ABC Australia',
             'link': 'https://www.abc.net.au'
-        },
-        {
-            'nome': 'The Independent',
-            'link': 'https://www.independent.co.uk'
         },
         {
             'nome': 'The Independent',

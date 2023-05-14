@@ -4,6 +4,8 @@ import statics
 from slugify import slugify
 import re
 from tqdm import tqdm
+from classes.chat import Chat
+from classes.video import Video
 
 class Scrapper:
     def __init__(self):
@@ -13,6 +15,8 @@ class Scrapper:
                           'Chrome/87.0.4280.88 Safari/537.36',
         }
         self.statics = statics
+        self.chat = Chat()
+        self.video = Video()
 
     def scrapp_unique(self,search='',pages={}):
         
@@ -55,7 +59,6 @@ class Scrapper:
 
         return list
         
-
     def scrapp(self,search='',type=''):
 
             list = []
@@ -63,7 +66,6 @@ class Scrapper:
 
             for pages in tqdm(list_scrapp):
                 try:
-
                     url = requests.get(pages.get('link'), headers=self.headers)
                     soup = BeautifulSoup(url.content, "html.parser")
                     links = soup.find_all('a', href=True)
@@ -77,7 +79,6 @@ class Scrapper:
                         if search != '':
 
                             if re.search(slugsearch, slugtext, re.IGNORECASE) and link != '#':
-
                                 if link[0] == '/':
                                     link = pages.get('link') + link
 
@@ -88,7 +89,6 @@ class Scrapper:
                                 })
 
                         else:
-
                             list.append({
                                 'link': link,
                                 'texto': text,
@@ -101,8 +101,6 @@ class Scrapper:
             return list
 
     def scrapPage(self,page):
-
-
         list = []
 
         url = requests.get(page, headers=self.headers)
@@ -123,4 +121,36 @@ class Scrapper:
 
         return list
 
+    def scrap_get_resume(self, url='',  prompt='Me faça um resumo do mais importante dentro deste conteúdo'):
+        try:
+            if url == '':
+                return False
+            
+            content = requests.get(url, headers=self.headers)
+            soup = BeautifulSoup(content.content, "html.parser")
+            
+            html = soup.get_text()
+            html = html.replace('\n', ' ')
 
+            #remove all blank spaces from list
+            html = re.sub('\s+', ' ', html)
+            html = ' '.join(html.split())
+                        
+            resume = self.chat.chat_with_intelligence(prompt=prompt, content=html)
+
+            return resume
+        
+        except:
+            return Exception('Ocorreu um erro ao gerar o resumo')
+
+    def scrap_get_resume_youtube(self, url='',  prompt='Me faça um resumo do mais importante dentro deste conteúdo'):
+        
+        if url == '':
+            return False
+        
+        try:
+            content = self.video.video_to_speech(youtube_url=url)
+            resume = self.chat.chat_with_intelligence(prompt=prompt, content=content.text)
+            return resume
+        except:
+            return Exception('Ocorreu um erro ao gerar o resumo')
