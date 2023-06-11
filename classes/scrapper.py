@@ -1,11 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 import statics
-from slugify import slugify
+
+import helpers.Helpers as Helpers
 import re
 from tqdm import tqdm
 from classes.chat import Chat
 from classes.video import Video
+
+slugify = Helpers.ToolHelper.slugify
+verify_link_hash = Helpers.ToolHelper.verify_link_hash
 
 class Scrapper:
     def __init__(self):
@@ -32,13 +36,12 @@ class Scrapper:
                 text = l.text
                 slugtext = slugify(text)
                 slugsearch = slugify(search)
+                
+                link = verify_link_hash(link, pages.get('link'))
 
                 if search != '':
 
-                    if re.search(slugsearch, slugtext, re.IGNORECASE) and link != '#':
-
-                        if link[0] == '/':
-                            link = pages.get('link') + link
+                    if re.search(slugsearch, slugtext, re.IGNORECASE):
 
                         list.append({
                             'link': link,
@@ -76,12 +79,12 @@ class Scrapper:
                         slugtext = slugify(text)
                         slugsearch = slugify(search)
 
+                        link = verify_link_hash(link, pages.get('link'))
+
                         if search != '':
 
-                            if re.search(slugsearch, slugtext, re.IGNORECASE) and link != '#':
-                                if link[0] == '/':
-                                    link = pages.get('link') + link
-
+                            if re.search(slugsearch, slugtext, re.IGNORECASE):
+                                
                                 list.append({
                                     'link': link,
                                     'texto': text,
@@ -111,7 +114,7 @@ class Scrapper:
 
             link = l.get('href')
             text = l.text
-
+            link = verify_link_hash(link, page)
 
             list.append({
                 'link': link,
